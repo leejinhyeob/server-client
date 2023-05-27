@@ -1,0 +1,42 @@
+na ra; no ro;
+
+import processing.net.*;
+String input;
+int data[];
+Server s;
+Client c;
+
+
+void setup(){
+  size(800, 400);
+  frameRate(50);
+  ra=new na();
+  ro=new no();
+  frameRate(50);
+  s= new Server(this,12345);
+}
+
+void draw(){
+  background(0);
+  ra.ex(); ro.ex();
+  c=s.available();
+  if(c!=null){
+    input=c.readString();
+    input=input.substring(0,input.indexOf("\n"));
+    stroke(0);
+    line(data[0],data[1],data[2],data[3]);
+  }
+}
+  void keyPressed(){
+    if(key=='w') ra.y-=10;
+    if(key=='s') ra.y+=10;
+    if(key=='a') ra.x-=10;
+    if(key=='d') ra.x+=10;
+    if (key==CODED){
+      if(keyCode==UP) ro.y-=10;
+      if(keyCode==DOWN) ro.y+=10;
+      if(keyCode==LEFT) ro.x-=10;
+      if(keyCode==RIGHT) ro.x+=10;
+
+    }
+  }
