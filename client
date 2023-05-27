@@ -1,0 +1,44 @@
+import processing.net.*;
+String input;
+int data[];
+Client c;
+na ra; no ro;
+
+void setup(){
+  size(800, 400);
+  frameRate(50);
+  ra=new na();
+  ro=new no();
+  
+  c= new Client(this,"192.168.35.43",12345);
+}
+
+void draw(){
+  background(0);
+  ra.ex(); ro.ex();
+  if (c.available()>0){
+    input=c.readString();
+    input=input.substring(0,input.indexOf("\n"));
+    data=int(split(input,' '));
+    if(data[0]!=0){
+      if(data[0]==1){ra.y-=10;} 
+      else if(data[0]==2){ra.y+=10;} 
+      else if(data[0]==3){ro.y-=10;} 
+      else if(data[0]==4){ro.y+=10;} 
+    }
+  }
+  int b=0;
+  if(keyPressed){
+    if(key=='w') {ra.y-=10;}
+    if(key=='s') {ra.y+=10;}
+    if(key=='a') {ra.x-=10;}
+    if(key=='d') {ra.x+=10;}
+    if (key==CODED){
+      if(keyCode==UP) {ro.y-=10;b=1; }
+      if(keyCode==DOWN) {ro.y+=10;b=2; }
+      if(keyCode==LEFT) {ro.x-=10;b=3; }
+      if(keyCode==RIGHT) {ro.x+=10;b=4; }
+    }
+  }
+  c.write(b+"\n");
+}
