@@ -1,0 +1,17 @@
+class na{
+  na(){x=100; y=100;}
+  float x,y;
+  void ex(){
+    fill(255);
+    circle(x,y,100); //100,250
+  }
+}
+
+class no{
+  no(){x=670; y=250;}
+  float x,y;
+  void ex(){
+    fill(255);
+    circle(x,y,100);//700,250
+  }
+}
